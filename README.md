@@ -1,1 +1,1 @@
-# COVID-Vaccine-Checket
+# COVID-Vaccine-Checker
