@@ -21,35 +21,19 @@ def vaccheck(acceptLanguage, input_pincode, input_date):
     #Extracting data in JSON format
     vacc_data = result.json()
     val1 = vacc_data.get('centers')
-    #print(vacc_data)
-    #print("\n")
     counter = []
     for i in val1:
         for key,value in i.items():
             if(key == 'sessions'):
                 vacc_sessions = value[0]
                 for k,v in vacc_sessions.items():
-                    # if(k == 'slots'):
-                    #     for s in v:
-                    #         print(s)
                     if(k == 'available_capacity'):
                         counter.append(v)
-                        # if(v == 0):
-                        #     print("No vaccination slots available ! Checked at ",time.time())
-                        # elif(v > 0):
-                        #     print("Vaccination slots available ! Checked at ",time.time())
-                    # else:
-                    #     print(k, " : ", v)
-            # else:
-            #     print(key, " : ", value)
-        #print("\n")
-    #print(counter)
     total = sum(counter)
     if(total > 0):
         notification.notify(title='Vaccination slots available !',message='Book slot now',timeout=4,app_icon=None)
         print("Vaccination slots available ! Checked at ",datetime.now()) 
     else:
-        #notification.notify(title='No slots available !',message='Please check again later',timeout = 4,app_icon=None)
         print("No vaccination slots available ! Checked at ",datetime.now())
 
 
@@ -78,13 +62,3 @@ while True:
     vaccheck(acceptLanguage, input_pincode, input_date)
     time.sleep(30)
 
-
-#Prints the response received from the API
-#print("Response: ",result)
-
-
-
-# for i in val1:
-#     for key,value in i.items():
-#        if(key == 'center_id'):
-#            print(key, value)
